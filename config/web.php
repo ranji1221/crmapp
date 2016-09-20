@@ -11,6 +11,10 @@ return [
             'cookieValidationKey' => 'jiran1221',
         ],
     	'db' => require(__DIR__ . '/db.php'),
+    	'urlManager' => [
+    			'enablePrettyUrl' => true,
+    			'showScriptName' => false
+    	],
     ],
 ];
 

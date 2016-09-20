@@ -8,9 +8,23 @@
 						
 	class CustomersController extends Controller{
 		
+		//-- real user interface  (真正的用户接口，供用户访问用的)
+		public function actionAdd(){
+			$this->render('add');
+		}
+		
+		
+		
+		//-- yii2默认访问驼峰的action是加的中划线，而且每个单词都要小写，真尼玛别扭
+		//-- 不过后面可以通过设置route改变 
+		public function actionAddMyCustomer(){
+			//-- 中划线、中划线、中划线，重要的事情说三遍
+			return '测试action的id为驼峰标识时的访问路径问题: hostname/crmapp/index.php?r=customers/add-my-customer';
+		}
+		
 		public function actionIndex(){
 			//-- 1. 顾客数据
-			$customer = new Customer('必然', strtotime('2016-09-10'));      //-- strtotime()返回的应该是个int
+			$customer = new Customer('故否', strtotime('2016-09-10'));      //-- strtotime()返回的应该是个int
 			$customer->notes = '这是个完人，没毛病';
 			//-- 2. 顾客电话数据(两种写法)
 			/* 
