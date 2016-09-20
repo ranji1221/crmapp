@@ -5,17 +5,11 @@
 	use app\models\customer\PhoneRecord;
 	use app\models\customer\Customer;
 	use app\models\customer\Phone;
-					
+						
 	class CustomersController extends Controller{
 		
 		public function actionIndex(){
-			$customer_record = CustomerRecord::findOne(['id'=>1]);
-			//echo $customer_record->id;
-			$customer = $this->makeCustomer($customer_record);
-			//echo $customer->phones->string();
-			foreach ($customer->phones as $phone)
-				echo $phone->number . '<br/>';
-			return 'Heloo ';
+			$this->printCustomer(2);
 		}
 		
 		private function store(Customer $customer){
@@ -42,7 +36,7 @@
 			//-- 1. 根据customerRecord的name、birth_date、notes属性值，构造customer对象的属性值
 			$name = $customer_record->name;
 			$birth_date = new \DateTime($customer_record->birth_date);
-			
+		
 			$customer = new Customer($name,$birth_date);
 			$customer->notes = $customer_record->notes;
 			
@@ -65,5 +59,24 @@
 			}
 			
 			return $customer;
+		}
+		/**
+		 * 打印一个customer对象，根据id
+		 * @param unknown $id
+		 */
+		private function printCustomer($id){
+			//-- 1. 根据id查询出CustomerRecord对象
+			$customer_record = CustomerRecord::findOne(['id'=>$id]);
+			//-- 2.把CustomerRecord对象转化为Customer对象 
+			$customer = $this->makeCustomer($customer_record);
+			//-- 3. 输出Customer对象属性
+			echo 'customer = [<br/>' ;
+			echo '&nbsp;&nbsp;name: ' . $customer->name . '<br/>';
+			echo '&nbsp;&nbsp;birth: ' . $customer->birth_date->format('Y-m-d') . '<br/>';
+			echo '&nbsp;&nbsp;phones: [<br/>';				
+			foreach ($customer->phones as $phone)
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;number: ' . $phone->number . '<br/>';
+			echo '&nbsp;&nbsp;]<br/>';
+			echo ']<br/>';
 		}
 	}

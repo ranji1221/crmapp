@@ -6,7 +6,7 @@
 		public $notes = '';
 		public $phones = [];
 		
-		public function _construct($name, $birth_date){
+		public function __construct($name, $birth_date){
 			$this->name = $name;
 			$this->birth_date = $birth_date;
 		}
