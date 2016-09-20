@@ -1,10 +1,15 @@
 <?php
-	return [
-		'id' => 'crmapp',
-		'basePath' => realpath(__DIR__ . '/../..'),
-		'components' => [
-			'request' => [
-				'cookieValidationKey' => 'jiran1221@163.com'
-			]
-		],
-	];
+
+return [
+    'id' => 'crmapp',
+	//-- bashPath的两种写法
+    //'basePath' => dirname(__DIR__),
+    'basePath' => realPath(__DIR__ . '/../'),
+    'components' => [
+        'request' => [
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'jiran1221',
+        ]
+    ],
+];
+

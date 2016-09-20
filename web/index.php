@@ -1,9 +1,12 @@
 <?php
-	//-- 1. 引入 Yii2 框架
-	require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
-	//-- 2. 获取配置信息
-	$config = require(__DIR__ . '/../config/web.php');
+// comment out the following two lines when deployed to production
+defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_ENV') or define('YII_ENV', 'dev');
 
-	//-- 2. 创建并运行应用实例
-	(new yii\web\Application($config))->run();
+require(__DIR__ . '/../vendor/autoload.php');
+require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
+
+$config = require(__DIR__ . '/../config/web.php');
+
+(new yii\web\Application($config))->run();
