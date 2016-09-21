@@ -5,7 +5,6 @@
 	use app\models\customer\PhoneRecord;
 	use app\models\customer\Customer;
 	use app\models\customer\Phone;
-use GuzzleHttp\Psr7\Request;
 							
 	class CustomersController extends Controller{
 		
