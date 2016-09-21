@@ -5,12 +5,15 @@
 	use app\models\customer\PhoneRecord;
 	use app\models\customer\Customer;
 	use app\models\customer\Phone;
-						
+use GuzzleHttp\Psr7\Request;
+							
 	class CustomersController extends Controller{
 		
 		//-- real user interface  (真正的用户接口，供用户访问用的)
 		public function actionAdd(){
-			$this->render('add');
+			$customer = new CustomerRecord();
+			$phone = new PhoneRecord();
+			return $this->render('add',['customer'=>$customer, 'phone'=>$phone]);
 		}
 		
 		
