@@ -53,20 +53,21 @@
 		
 		public function actionIndex(){
 			//-- 1. 顾客数据
-			$customer = new CustomerForm('故否', strtotime('2016-09-10'));      //-- strtotime()返回的应该是个int
-			$customer->notes = '这是个完人，没毛病';
+			$customerForm = new CustomerForm('故否', strtotime('2016-09-10'));      //-- strtotime()返回的应该是个int
+			$customerForm->notes = '这是个完人，没毛病';
+			
 			//-- 2. 顾客电话数据(两种写法)
 		
-			 //第一种写法：那么 store()方法里的循环部分的代码就是：$phone_record->number = $phone->number; (属性)
+			 //第一种写法：那么 store()方法里的循环部分的代码就是：$phone->number = $phoneForm->number; (属性)
 			$p1 = new PhoneForm();
 			$p1->number = '170';
 			$p2 = new PhoneForm();
 			$p2->number = '171';
 			$p3 = new PhoneForm();
 			$p3->number = '172';
-			$customer->phones = [$p1, $p2, $p3];
+			$customerForm->phones = [$p1, $p2, $p3];
 			
-			//第二种写法：那么store()方法里的循环部分的代码就是：$phone_record->number = $phone['number'];  (数组下标的形式)
+			//第二种写法：那么store()方法里的循环部分的代码就是：$phone->number = $phoneForm['number'];  (数组下标的形式)
 			/*
 			$customer->phones = [
 					['number'=>'188'],
@@ -76,9 +77,9 @@
 			*/
 			
 			//-- 3. 存储顾客信息
-			$this->store($customer);
+			$this->store($customerForm);
 			//-- 4. 打印信息
-			$this->printCustomer(6);
+			$this->printCustomer(3);
 		}
 		/**
 		 * 根据顾客信息存储顾客记录
@@ -95,7 +96,7 @@
 			
 			//-- 3. 存储Customer，并且存储相关的电话信息
 			if($customer->save())
-				foreach ($customer->phones as $phoneForm){
+				foreach ($customerForm->phones as $phoneForm){
 						$phone = new Phone();
 						//-- 注意这里的写法，如果你在构造customer->phones对象数组的时候，里面是new的phone对象，那么就
 						//-- 写成$phone->number; 如果里面都是用的数组，那么就用下标的访问方式$phone['number']
@@ -132,7 +133,7 @@
 			
 			foreach ($phones as $phone){
 				$phoneForm = new PhoneForm;
-				$phone->number = $phone->number;
+				$phoneForm->number = $phone->number;
 				$customerForm->phones[] = $phoneForm;
 			}
 			
@@ -145,16 +146,18 @@
 		private function printCustomer($id){
 			//-- 1. 根据id查询出Customer对象
 			$customer = Customer::findOne(['id'=>$id]);
-			//-- 2.把Customer对象转化为customerForm对象 
-			$customerForm = $this->makeCustomerFormObject($customer);
-			//-- 3. 输出Customer对象属性
-			echo 'customer = [<br/>' ;
-			echo '&nbsp;&nbsp;name: ' . $customerForm->name . '<br/>';
-			echo '&nbsp;&nbsp;birth: ' . $customerForm->birth_date->format('Y-m-d') . '<br/>';
-			echo '&nbsp;&nbsp;phones: [<br/>';				
-			foreach ($customerForm->phones as $phone)
-				echo '&nbsp;&nbsp;&nbsp;&nbsp;number: ' . $phone->number . '<br/>';
-			echo '&nbsp;&nbsp;]<br/>';
-			echo ']<br/>';
+			//-- 2.把Customer对象转化为customerForm对象
+			if($customer!=null){
+				$customerForm = $this->makeCustomerFormObject($customer);
+				//-- 3. 输出Customer对象属性
+				echo 'customer = [<br/>' ;
+				echo '&nbsp;&nbsp;name: ' . $customerForm->name . '<br/>';
+				echo '&nbsp;&nbsp;birth: ' . $customerForm->birth_date->format('Y-m-d') . '<br/>';
+				echo '&nbsp;&nbsp;phones: [<br/>';				
+				foreach ($customerForm->phones as $phone)
+					echo '&nbsp;&nbsp;&nbsp;&nbsp;number: ' . $phone->number . '<br/>';
+				echo '&nbsp;&nbsp;]<br/>';
+				echo ']<br/>';
+			}
 		}
 	}
