@@ -1,13 +1,23 @@
 <?php
 	namespace app\models\customer;
-	class Customer{
-		public $name;
-		public $birth_date;
-		public $notes = '';
-		public $phones = [];
+	use yii\db\ActiveRecord;
+	/**
+	 * 
+	 * @author RanJi
+	 *
+	 */
+	class Customer extends ActiveRecord{
+		public static function tableName(){
+			return 'customer';
+		}
 		
-		public function __construct($name, $birth_date){
-			$this->name = $name;
-			$this->birth_date = $birth_date;
+		public function rules(){
+			return [
+					['id','number'],
+					['name','required'],
+					['name','string', 'max' => 256],
+					['birth_date','date','format' => 'Y-m-d'],
+					['notes','safe']
+			];
 		}
 	}
