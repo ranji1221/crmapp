@@ -32,6 +32,13 @@
 //echo $customerForm->notes . '<br/>';
 			
 //echo $phoneForm->number . '<br/>';
+
+				//-- 3. 顾客和电话信息存储
+				if($customerForm->validate() && $phoneForm->validate()){
+					$customerForm->phones = [$phoneForm] ;	
+					$this->store($customerForm);
+				}
+				
 			}
 			
 			return $this->render('add',['customer'=>$customerForm, 'phone'=>$phoneForm]);
@@ -48,7 +55,7 @@
 		
 		public function actionIndex(){
 			//-- 1. 顾客数据
-			$customerForm = new CustomerForm('故否', strtotime('2016-09-10'));      //-- strtotime()返回的应该是个int
+			$customerForm = new CustomerForm('故否', '2016-09-10');  
 			$customerForm->notes = '这是个完人，没毛病';
 			
 			//-- 2. 顾客电话数据(两种写法)
@@ -86,7 +93,8 @@
 			//-- 2. 给Customer对象赋值，这里唯一要注意的是日期类型的赋值
 			//-- 切记我们拿到的customer的值是个整型，必须要转为日期
 			$customer->name = $customerForm->name;
-			$customer->birth_date =date('Y-m-d',$customerForm->birth_date);
+			//-- 因为底层数据库是date型，所以这里必须是date，先把字符串转为时间的int，再构造date 
+			$customer->birth_date = date('Y-m-d', strtotime($customerForm->birth_date));
 			$customer->notes = $customerForm->notes;
 			
 			//-- 3. 存储Customer，并且存储相关的电话信息

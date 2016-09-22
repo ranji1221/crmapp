@@ -17,6 +17,7 @@
 		public function  rules(){
 			return [
 					 [['name', 'birth_date','notes'], 'default', 'value' => null],
+					 ['birth_date','date','format'=>'Y-m-d'],
 			];
 		}
 	}
