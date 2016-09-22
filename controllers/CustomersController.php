@@ -12,6 +12,16 @@
 	 */
 	class CustomersController extends Controller{
 		
+		
+		public function actionIndex(){
+			//-- 重定向带参数的测试
+			//echo \Yii::$app->request->get('customer')['name'];
+			
+			
+			
+		}
+		
+		
 		//-- real user interface  (真正的用户接口，供用户访问用的)
 		public function actionAdd(){
 			//-- 1. 请求对象
@@ -37,6 +47,10 @@
 				if($customerForm->validate() && $phoneForm->validate()){
 					$customerForm->phones = [$phoneForm] ;	
 					$this->store($customerForm);
+					//-- 重定向带参数
+					//return $this->redirect(['/customers','customer'=>$customerForm]);
+					//-- 重定向不带参数
+					return $this->redirect('/customers');
 				}
 				
 			}
@@ -53,7 +67,7 @@
 			return '测试action的id为驼峰标识时的访问路径问题: hostname/crmapp/index.php?r=customers/add-my-customer';
 		}
 		
-		public function actionIndex(){
+		public function actionTest(){
 			//-- 1. 顾客数据
 			$customerForm = new CustomerForm('故否', '2016-09-10');  
 			$customerForm->notes = '这是个完人，没毛病';
