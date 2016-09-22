@@ -14,4 +14,9 @@
 			$this->birth_date = $birth_date;
 		}
 		
+		public function  rules(){
+			return [
+					 [['name', 'birth_date','notes'], 'default', 'value' => null],
+			];
+		}
 	}

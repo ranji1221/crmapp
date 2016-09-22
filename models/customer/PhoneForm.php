@@ -7,6 +7,8 @@
 		public $number;
 		
 		public function rules(){
-			return [];
+			return [
+					['number','required'],
+			];
 		}
 	}

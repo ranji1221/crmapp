@@ -15,31 +15,26 @@
 		//-- real user interface  (真正的用户接口，供用户访问用的)
 		public function actionAdd(){
 			//-- 1. 请求对象
-			//$request = Yii::$app->request;
+			$request = \Yii::$app->request;
 			
 			//-- 2. 创建CustomerForm、PhoneForm表单模型对象
-			$customer = new CustomerForm(null,null);
-			$phone = new PhoneForm();
+			$customerForm = new CustomerForm(null,null);
+			$phoneForm = new PhoneForm();
 			
-			if(/* $customer->load($request->post()) &&  */$phone->load((\Yii::$app)->request->post())){
-				/*
-				$params =  $request->getBodyParam('Customer');
-				foreach ($params as $p){
-					echo $p;
-				}*/
-				//echo $request->post('Customer')['name'];
-				//echo $request->post('Customer')['birth_date'];
-				//echo $request->post('Customer')['notes'];
-				//echo $request->post('Phone')['number'];
-				//echo $customer->name;				
-				//echo $phone->number . '===============';
-				//echo var_dump($phone);
-				echo $phone->number;
-				//echo $phone->load((\Yii::$app)->request->post());
-				//echo 'hello world';
+			if($customerForm->load($request->post()) && $phoneForm->load($request->post())){
+//echo $request->post('CustomerForm')['name'];
+//echo $request->post('CustomerForm')['birth_date'];
+//echo $request->post('CustomerForm')['notes'];
+//echo $request->post('PhoneForm')['number'];
+//-- 终于测试成功，就是customerFomr、phoneForm类必须有rules()方法，否则调用load()方法不会赋值，不知道哪里能设置吗？这不太合理			
+//echo $customerForm->name . '<br/>';			
+//echo $customerForm->birth_date .' <br/>';
+//echo $customerForm->notes . '<br/>';
+			
+//echo $phoneForm->number . '<br/>';
 			}
 			
-			return $this->render('add',['customer'=>$customer, 'phone'=>$phone]);
+			return $this->render('add',['customer'=>$customerForm, 'phone'=>$phoneForm]);
 		}
 		
 		
