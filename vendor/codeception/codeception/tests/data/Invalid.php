@@ -1,2 +1,2 @@
 <?php
-$I do nothing here
+$I . 'do nothing here';
