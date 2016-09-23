@@ -5,7 +5,8 @@
 	use app\models\customer\PhoneForm;
 	use app\models\customer\Phone;
 	use yii\web\Controller;
-	/**
+	use yii\data\ArrayDataProvider;
+		/**
 	 * 
 	 * @author Administrator
 	 *
@@ -17,8 +18,37 @@
 			//-- 重定向带参数的测试
 			//echo \Yii::$app->request->get('customer')['name'];
 			
-			
-			
+			$records = $this->findRecords();
+			//var_dump($records);
+			return $this->render('index',['records'=>$records]);
+		}
+		
+		public function actionQuery(){
+			return $this->render('query');
+		}
+		
+				
+		private function findRecords(){
+			$number = \Yii::$app->request->get('phone_number');
+			$records = $this->getRecordsByPhoneNumber($number);
+			$dataProvider = $this->wrapIntoDataProvider($records);
+			return $dataProvider;
+		}
+		
+		private function getRecordsByPhoneNumber($number){
+			$phone = Phone::findOne(['number' => $number]);
+			if(!$phone) return [];
+			$customer = Customer::findOne($phone->customer_id);
+			if(!$customer)return [];
+			return $this->makeCustomerFormObject($customer);
+		}
+		
+		private function wrapIntoDataProvider($data){
+			return new ArrayDataProvider([
+					// 'key' => 'name',
+					'allModels' => [$data],
+					'pagination' => false,
+			]);
 		}
 		
 		
