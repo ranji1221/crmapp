@@ -1,11 +1,11 @@
 <?php
 	namespace app\controllers;
-	use app\models\customer\CustomerForm;
 	use app\models\customer\Customer;
-	use app\models\customer\PhoneForm;
+	use app\models\customer\CustomerForm;
 	use app\models\customer\Phone;
-	use yii\web\Controller;
+	use app\models\customer\PhoneForm;
 	use yii\data\ArrayDataProvider;
+	use yii\web\Controller;
 		/**
 	 * 
 	 * @author Administrator
@@ -98,19 +98,23 @@
 		}
 		
 		public function actionTest(){
+			//-- 利用faker工具生成好看点儿的模拟数据
+			$faker = \Faker\Factory::create();
+			
+			
 			//-- 1. 顾客数据
-			$customerForm = new CustomerForm('故否', '2016-09-10');  
-			$customerForm->notes = '这是个完人，没毛病';
+			$customerForm = new CustomerForm($faker->name, $faker->date('Y-m-d'));  
+			$customerForm->notes = $faker->sentence(8);
 			
 			//-- 2. 顾客电话数据(两种写法)
 		
 			 //第一种写法：那么 store()方法里的循环部分的代码就是：$phone->number = $phoneForm->number; (属性)
 			$p1 = new PhoneForm();
-			$p1->number = '170';
+			$p1->number = $faker->phoneNumber;
 			$p2 = new PhoneForm();
-			$p2->number = '171';
+			$p2->number = $faker->phoneNumber;
 			$p3 = new PhoneForm();
-			$p3->number = '172';
+			$p3->number = $faker->phoneNumber;
 			$customerForm->phones = [$p1, $p2, $p3];
 			
 			//第二种写法：那么store()方法里的循环部分的代码就是：$phone->number = $phoneForm['number'];  (数组下标的形式)
