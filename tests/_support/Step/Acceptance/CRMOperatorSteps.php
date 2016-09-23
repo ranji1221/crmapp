@@ -12,10 +12,10 @@ class CRMOperatorSteps extends \AcceptanceTester
 		$faker = \Faker\Factory::create();
 
 		return [
-			'CustomerRecord[name]' => $faker->name,
-			'CustomerRecord[birth_date]' => $faker->date('Y-m-d'),
-			'CustomerRecord[notes]' => $faker->sentence(8),
-			'PhoneRecord[number]' => $faker->phoneNumber
+			'CustomerForm[name]' => $faker->name,
+			'CustomerForm[birth_date]' => $faker->date('Y-m-d'),
+			'CustomerForm[notes]' => $faker->sentence(8),
+			'PhoneForm[number]' => $faker->phoneNumber
 		];
 	}
 
@@ -30,7 +30,7 @@ class CRMOperatorSteps extends \AcceptanceTester
 		$I->click('Submit');
 	}
 
-	public function seeIAmInListCustomerUi(){
+	public function seeIAmInListCustomersUi(){
 		$I = $this;
 		$I->seeCurrentUrlMatches('/customers/');
 	}

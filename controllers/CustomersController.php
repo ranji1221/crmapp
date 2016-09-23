@@ -29,7 +29,7 @@
 		
 				
 		private function findRecords(){
-			$number = \Yii::$app->request->get('phone_number');
+			$number = \Yii::$app->request->get('PhoneForm')['number'];
 			$records = $this->getRecordsByPhoneNumber($number);
 			$dataProvider = $this->wrapIntoDataProvider($records);
 			return $dataProvider;
