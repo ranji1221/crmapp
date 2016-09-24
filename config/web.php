@@ -16,5 +16,12 @@ return [
     			'showScriptName' => false
     	],
     ],
+		
+	'modules' => [
+		'gii' => [
+				'class' => 'yii\gii\Module',
+				'allowedIPs' => ['*'],
+		],
+	],
 ];
 
