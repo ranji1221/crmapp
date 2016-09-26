@@ -17,7 +17,6 @@
 		public function actionIndex(){
 			//-- 重定向带参数的测试
 			//echo \Yii::$app->request->get('customer')['name'];
-			
 			$records = $this->findRecords();
 			//var_dump($records);
 			return $this->render('index',['records'=>$records]);
@@ -46,7 +45,8 @@
 		private function wrapIntoDataProvider($data){
 			return new ArrayDataProvider([
 					// 'key' => 'name',
-					'allModels' => [$data],
+					//allModels必须跟数组，不能是一个对象
+					'allModels' => ($data != null) ? [$data] : null,
 					'pagination' => false,
 			]);
 		}
@@ -76,11 +76,11 @@
 				//-- 3. 顾客和电话信息存储
 				if($customerForm->validate() && $phoneForm->validate()){
 					$customerForm->phones = [$phoneForm] ;	
-					$this->store($customerForm);
+					$customer = $this->store($customerForm);
 					//-- 重定向带参数
 					//return $this->redirect(['/customers','customer'=>$customerForm]);
 					//-- 重定向不带参数
-					return $this->redirect('/customers');
+					return $this->redirect(['/customers','PhoneForm[number]' => $phoneForm->number]);
 				}
 				
 			}
@@ -155,6 +155,7 @@
 						$phone->customer_id =$customer->id;
 						$phone->save();
 				}
+			
 		}
 		
 		/**
