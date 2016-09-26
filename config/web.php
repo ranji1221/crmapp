@@ -5,6 +5,7 @@ return [
 	//-- bashPath的两种写法
     //'basePath' => dirname(__DIR__),
     'basePath' => realPath(__DIR__ . '/../'),
+	'timeZone' => 'Asia/Shanghai',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
