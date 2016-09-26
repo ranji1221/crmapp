@@ -127,9 +127,9 @@
 			*/
 			
 			//-- 3. 存储顾客信息
-			$this->store($customerForm);
+			$customer = $this->store($customerForm);
 			//-- 4. 打印信息
-			$this->printCustomer(3);
+			$this->printCustomer($customer->id);
 		}
 		/**
 		 * 根据顾客信息存储顾客记录
@@ -155,7 +155,7 @@
 						$phone->customer_id =$customer->id;
 						$phone->save();
 				}
-			
+			return $customer;	
 		}
 		
 		/**
