@@ -35,4 +35,11 @@ class CRMUserSteps extends \AcceptanceTester
 		$I = $this;
 		$I->dontSee($customer_data['CustomerForm[name]'],'#search results');
 	}
+	
+	
+	public function seeLargeBodyOfText(){
+		$I = $this;
+		$text = $I->grabTextFrom('p');	//naive selector
+		$I->seeContentIsLong($text);
+	}
 }

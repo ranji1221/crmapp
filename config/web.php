@@ -22,6 +22,14 @@ return [
     			],
     		]
     	],
+    	
+    	'view' => [
+    		'renderers'=> [
+    			'md' => [
+    				'class' => 'app\utilities\MarkdownRenderer'	
+    			]	
+    		],	
+    	],
     		
     	'urlManager' => [
     		'enablePrettyUrl' => true,

@@ -5,7 +5,12 @@
 	class SiteController extends Controller{
 		public function actionIndex(){
 			var_dump(\Yii::$app->log->traceLevel);
-			aaaa;
+			//aaaa;
 			return 'Our CRM';
+		}
+		
+		public function actionDocs(){
+			//return '<h1>Documentation</h1>';
+			return $this->render('docindex.md');
 		}
 	}
