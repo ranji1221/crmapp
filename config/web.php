@@ -29,10 +29,11 @@ return [
     				'class' => 'app\utilities\MarkdownRenderer'	
     			]	
     		],	
+    		/* //-- 暂时注释掉主题的配置，详见上一个版本
     		'theme' => [
     			'class' => yii\base\Theme::className(),
     			'basePath' => '@app/themes/snow',
-    		],
+    		],*/
     	],
     		
     	'response' => [
