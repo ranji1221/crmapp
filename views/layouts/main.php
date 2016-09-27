@@ -10,7 +10,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
-//$this->registerAssetBundle('app\assets\MyUIAsset',View::POS_HEAD);  两种注册Asset的方法，该方法更加的灵活。可以选择加载的位置
+//$this->registerAssetBundle('app\assets\MyUIAsset',yii\web\View::POS_HEAD);  //两种注册Asset的方法，该方法更加的灵活。可以选择加载的位置
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

@@ -10,7 +10,7 @@ use app\utilities\YamlResponseFormatter;
 		public function actionIndex(){
 			//var_dump(\Yii::$app->log->traceLevel);
 			//return 'Our CRM';
-			$this->layout = false;		//-- 不使用模板
+			//$this->layout = false;		//-- 不使用模板
 			return $this->render('index');
 		}
 		
