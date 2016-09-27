@@ -8,9 +8,9 @@ use app\utilities\YamlResponseFormatter;
 			
 	class SiteController extends Controller{
 		public function actionIndex(){
-			var_dump(\Yii::$app->log->traceLevel);
-			//aaaa;
-			return 'Our CRM';
+			//var_dump(\Yii::$app->log->traceLevel);
+			//return 'Our CRM';
+			return $this->render('index');
 		}
 		/**
 		 * 自定义Renderer，在utilities\MarkdownRenderder.php文件中，
