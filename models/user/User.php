@@ -44,4 +44,13 @@ class User extends \yii\db\ActiveRecord
             'password' => 'Password',
         ];
     }
+    
+    public function beforeSave($insert){
+    	//-- 1. 对密码属性进行Hash加密 (加if是因为只有当密码属性被更改的时候才更新密码或者加密，而仅仅是更新别的属性就不更新密码了。)
+    	if($this->isAttributeChanged('password'))
+    		$this->password = \Yii::$app->security->generatePasswordHash($this->password);
+    	
+    	//-- 2. 必须接着调用父类的方法
+    	return parent::beforeSave($insert);
+    }
 }
