@@ -10,8 +10,15 @@ use app\utilities\YamlResponseFormatter;
 		public function actionIndex(){
 			//var_dump(\Yii::$app->log->traceLevel);
 			//return 'Our CRM';
+			$this->layout = false;		//-- 不使用模板
 			return $this->render('index');
 		}
+		
+		public function actionAsset(){
+			$this->layout = 'test';
+			return $this->render('testasset');
+		}
+		
 		/**
 		 * 自定义Renderer，在utilities\MarkdownRenderder.php文件中，
 		 * 并在web.php中配置view->renderders->md属性
