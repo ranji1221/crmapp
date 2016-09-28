@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="bnA5OHJVSy0rIVRzNAIEVyc5VQsbHCJuIzJPbkcQCXIKOgh1ASIKeg==">
+    <title>Create User</title>
+    <link href="/crmapp/web/assets/96a6f1c3/css/bootstrap.css" rel="stylesheet">
+<link href="/crmapp/web/css/site.css" rel="stylesheet"></head>
+<body>
+
+<div class="wrap">
+    <nav id="w1" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w1-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="/crmapp/web/">RanJi.org</a></div><div id="w1-collapse" class="collapse navbar-collapse"><ul id="w2" class="navbar-nav navbar-right nav"><li><a href="/crmapp/web/site/index">Home</a></li>
+<li><a href="/crmapp/web/site/about">About</a></li>
+<li><a href="/crmapp/web/site/contact">Contact</a></li>
+<li><a href="/crmapp/web/site/login">Login</a></li></ul></div></div></nav>
+    <div class="container">
+        <ul class="breadcrumb"><li><a href="/crmapp/web/">Home</a></li>
+<li><a href="/crmapp/web/users/index">Users</a></li>
+<li class="active">Create User</li>
+</ul>        <div class="user-create">
+
+    <h1>Create User</h1>
+
+    
+<div class="user-form">
+
+    <form id="w0" action="/crmapp/web/users/create" method="post">
+<input type="hidden" name="_csrf" value="bnA5OHJVSy0rIVRzNAIEVyc5VQsbHCJuIzJPbkcQCXIKOgh1ASIKeg==">
+    <div class="form-group field-user-username required">
+<label class="control-label" for="user-username">Username</label>
+<input type="text" id="user-username" class="form-control" name="User[username]" maxlength="255">
+
+<div class="help-block"></div>
+</div>
+    <div class="form-group field-user-password">
+<label class="control-label" for="user-password">Password</label>
+<input type="password" id="user-password" class="form-control" name="User[password]" maxlength="255">
+
+<div class="help-block"></div>
+</div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Create</button>    </div>
+
+    </form>
+</div>
+
+</div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; jiran 2016</p>
+
+        <p class="pull-right">Powered By <a href="http://www.ranji.org">ranji.org</a></p>
+    </div>
+</footer>
+
+<script src="/crmapp/web/assets/94671ace/jquery.js"></script>
+<script src="/crmapp/web/assets/224206af/yii.js"></script>
+<script src="/crmapp/web/assets/224206af/yii.validation.js"></script>
+<script src="/crmapp/web/assets/224206af/yii.activeForm.js"></script>
+<script src="/crmapp/web/assets/96a6f1c3/js/bootstrap.js"></script>
+<script type="text/javascript">jQuery(document).ready(function () {
+jQuery('#w0').yiiActiveForm([{"id":"user-username","name":"username","container":".field-user-username","input":"#user-username","validate":function (attribute, value, messages, deferred, $form) {yii.validation.required(value, messages, {"message":"Username cannot be blank."});yii.validation.string(value, messages, {"message":"Username must be a string.","max":255,"tooLong":"Username should contain at most 255 characters.","skipOnEmpty":1});}},{"id":"user-password","name":"password","container":".field-user-password","input":"#user-password","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Password must be a string.","max":255,"tooLong":"Password should contain at most 255 characters.","skipOnEmpty":1});}}], []);
+});</script></body>
+</html>

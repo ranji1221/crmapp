@@ -46,6 +46,7 @@ return [
     		
     	'user' => [
     		'identityClass' => 'app\models\user\User',	
+    		'enableAutoLogin' => true		//-- 配置cookie其作用，能够自动登录
     	],
     		
     	'urlManager' => [
