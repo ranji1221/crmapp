@@ -44,6 +44,10 @@ return [
     		],	
     	],	
     		
+    	'user' => [
+    		'identityClass' => 'app\models\user\User',	
+    	],
+    		
     	'urlManager' => [
     		'enablePrettyUrl' => true,
     		'showScriptName' => false
