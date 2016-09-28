@@ -48,7 +48,7 @@
 			$user = $this->getUser($this->username);
 			if(!$user) return false;
 			
-			//\Yii::$app->user->enableAutoLogin = true;
+			//\Yii::$app->user->enableAutoLogin = true; 该属性不光是影响cookie的存储，而且影响cookie是否能自动登录，在web.php中配置
 			return \Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
 		}
 	}
