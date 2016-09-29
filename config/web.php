@@ -43,12 +43,14 @@ return [
     			]	
     		],	
     	],	
-    		
+    	//-- 配置用户登录身份认证	
     	'user' => [
     		'identityClass' => 'app\models\user\User',	
     		'enableAutoLogin' => true		//-- 配置cookie其作用，能够自动登录
     	],
-    	
+    	//--配置rbac的权限控制
+    	'authManager' => require (__DIR__ . '/rbac.php'),	
+    	//-- 配置自定义的异常	
     	'errorHandler' => [
     		'errorAction' => 'site/error',	//-- 自定义异常处理	
     	],
