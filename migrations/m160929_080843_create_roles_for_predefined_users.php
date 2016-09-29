@@ -1,6 +1,7 @@
 <?php
 
 use yii\db\Migration;
+use app\models\user\User;
 
 class m160929_080843_create_roles_for_predefined_users extends Migration
 {
@@ -27,15 +28,21 @@ class m160929_080843_create_roles_for_predefined_users extends Migration
 		$rbac->addChild($manager, $user);
 		$rbac->addChild($user, $guest);
 		
-		
-		
+		$rbac->assign(
+			$user, User::findOne(['username'=>'RanUser'])->id
+		);
+		$rbac->assign(
+			$manager, User::findOne(['username'=>'RanManager'])->id
+		);
+		$rbac->assign(
+			$admin, User::findOne(['username'=>'RanAdmin'])->id
+		);
     }
 
     public function down()
     {
-        echo "m160929_080843_create_roles_for_predefined_users cannot be reverted.\n";
-
-        return false;
+      	$manager = \Yii::$app->authManager;
+      	$manager->removeAll();
     }
 
     /*
