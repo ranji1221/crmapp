@@ -3,11 +3,47 @@
 	
 	use \yii\web\Controller;
 	use app\models\service\Service;
-	use yii\web\Response;
-	use app\utilities\YamlResponseFormatter;
 	use app\models\user\LoginForm;
-			
+	use app\utilities\YamlResponseFormatter;
+	use yii\web\Response;
+use yii\filters\AccessControl;
+				
 	class SiteController extends Controller{
+		
+		//-- yii2提供了两种访问控制的方式，
+		//-- 第一种是利用beforeAction($action)和afterAction($action)方式做控制
+		//-- 第二种是利用过滤器（也叫behavior行为）
+		//-- 这里先看第一种
+		/*
+		public function beforeAction($action){
+			$parentAllowed = parent::beforeAction($action);
+			$meAllowed = !\Yii::$app->user->isGuest;
+			echo '<center><h2>您是游客，没权限访问</h2></center><hr color="red"/>';
+			return $parentAllowed and $meAllowed;
+		}*/
+		//-- 第二种过滤器处理方式
+		public function behaviors(){
+			return [
+				'access' => [
+					'class' => AccessControl::className(),
+					'only' => ['login','logout'],
+					'rules' => [
+						[
+							'actions' => ['login'],
+							'roles' => ['?'],
+							'allow' => true,
+						],
+						[
+							'actions' => ['logout'],
+							'roles' => ['@'],
+							'allow' => true
+						]
+					]
+				],	
+			];
+		}
+		
+		
 		public function actionIndex(){
 			//var_dump(\Yii::$app->log->traceLevel);
 			//return 'Our CRM';
@@ -111,4 +147,10 @@
 			\Yii::$app->user->logout();
 			return $this->goHome();
 		}
+		
+		public function actionError(){
+			$exception = \Yii::$app->errorHandler->exception;
+			return $this->renderPartial('error',['exception'=>$exception]);
+		}
+		
 	}

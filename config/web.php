@@ -48,6 +48,10 @@ return [
     		'identityClass' => 'app\models\user\User',	
     		'enableAutoLogin' => true		//-- 配置cookie其作用，能够自动登录
     	],
+    	
+    	'errorHandler' => [
+    		'errorAction' => 'site/error',	//-- 自定义异常处理	
+    	],
     		
     	'urlManager' => [
     		'enablePrettyUrl' => true,
